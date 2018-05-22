@@ -55,11 +55,39 @@ let scoreMovements = function(str) {
 		}
 	}
 	// making steps
+	currRow = currCol = 0;
+	for (let i = 0; i < splittedStr.length; i = i + 2) {
+		if (splittedStr[i] === 'north') {
+			for (let j = 0; j < Number(splittedStr[i + 1]); j++) {
+				moves[currCol][j * (-1) + currRow - 1] += 1;
+			}
+			currRow -= Number(splittedStr[i + 1]); 
+		} else if (splittedStr[i] === 'south') {
+			for (let j = 0; j < Number(splittedStr[i + 1]); j++) {
+				moves[currCol][j + currRow + 1] += 1;
+			}
+			currRow += Number(splittedStr[i + 1]); 		
+		} else if (splittedStr[i] === 'west') {
+			for (let j = 0; j < Number(splittedStr[i + 1]); j++) {
+				moves[j * (-1) + currCol - 1][currRow] += 1;
+			} 
+			currCol -= Number(splittedStr[i + 1]);
+		}  else {
+			for (let j = 0; j < Number(splittedStr[i + 1]); j++) {
+				moves[j + currCol + 1][currRow] += 1;
+			}
+			currCol += Number(splittedStr[i + 1]);
+		}
+	}
 	
-	console.log(`Min Row: ${minRow}`);
-	console.log(`Max Row: ${maxRow}`);
-	console.log(`Min Col: ${minCol}`);
-	console.log(`Max Col: ${maxCol}`);
+	// getScore
+	
+	console.log(moves);
+
+	// console.log(`Min Row: ${minRow}`);
+	// console.log(`Max Row: ${maxRow}`);
+	// console.log(`Min Col: ${minCol}`);
+	// console.log(`Max Col: ${maxCol}`);
 }
 
 let str = "north 3 west 1 north 1 east 2 south 2 east 5 south 4 east 2 north 2 west 2";
