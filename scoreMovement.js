@@ -15,7 +15,6 @@
 
 // "north 3 west 1 north 1 east 2 south 2 east 5 south 4 east 2 north 2 west 2"
 let scoreMovements = function(str) {
-	let moves = [];
 	let minRow = 0;
 	let minCol = 0;
 	let maxRow = 0;
@@ -23,6 +22,7 @@ let scoreMovements = function(str) {
 	let currRow = 0;
 	let currCol = 0;
 	const splittedStr = str.split(' ');
+	// getting min and max rows and cols indexes
 	for (let i = 0; i < splittedStr.length; i = i + 2) {
 		if (splittedStr[i] === 'north') {
 			currRow -= Number(splittedStr[i + 1]);
@@ -46,6 +46,16 @@ let scoreMovements = function(str) {
 			}
 		}
 	}
+	// init matrix
+	let moves = [];
+	for (let i = minCol; i <= maxCol; i++) {
+		moves[i] = [];
+		for (let j = minRow; j <= maxRow; j++) {
+			moves[i][j] = 0;
+		}
+	}
+	// making steps
+	
 	console.log(`Min Row: ${minRow}`);
 	console.log(`Max Row: ${maxRow}`);
 	console.log(`Min Col: ${minCol}`);
