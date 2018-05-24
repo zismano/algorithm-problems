@@ -79,9 +79,14 @@ let scoreMovements = function(str) {
 			currCol += Number(splittedStr[i + 1]);
 		}
 	}
-	
-	// getScore
-	
+
+	// get score
+	if (startOfLoop.row === '') {	// no loop
+		return 0;
+	} else {
+		findPathOfLoop(startOfLoop, moves) // TBD
+	}
+		
 	console.log(moves);
 
 	// console.log(`Min Row: ${minRow}`);
