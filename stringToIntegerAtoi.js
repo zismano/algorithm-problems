@@ -47,44 +47,44 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
 var myAtoi = function(str) {
   let strNum = '';
   if (str.length) {
-  	let i = 0;
-  	while (str[i] === ' ' && i < str.length) {
-  		i++;
-  	}
-  	if (i === str.length) {
-  		return 0;
-  	} else if (str[i] !== '-' && str[i] !== '+' && Number(str[i]) === NaN)  {
-  		return 0;
-  	} else if (typeof Number(str[i]) === 'number') {
-  		while (i < str.length && str[i] !== ' ' && Number(str[i]) !== NaN) {
-  			strNum += str[i];
-  			if (Number(strNum) >= 2147483648) {
-  				return 2147483648;
-  			}
-  			i++;
-  		}
-  		return Number(strNum);
-  	} else {
-  		strNum += str[i] === '-' ? '-' : '';
-  		i++;
-  		if (i >= str.length || typeof Number(str[i]) !== 'number') {
-  			return 0;
-  		} else {
-  			while (i < str.length && str[i] !== ' ' && Number(str[i]) !== NaN) {
-	  			strNum += str[i];
-	  			if (Math.abs(Number(strNum)) >= 2147483648) {
-	  				if (strNum[0] === '-') {
-	  					return -2147483648;
-	  				} else {
-	  					return 2147483648; 
-	  				}
-	  			}
-	  			i++;
-	  		}
-	  		return Number(strNum); 			
-  		}
-  	}
+    let i = 0;
+    while (str[i] === ' ' && i < str.length) {
+      i++;
+    }
+    if (i === str.length) {
+      return 0;
+    } else if (str[i] !== '-' && str[i] !== '+' && !Number(str[i]) && str[i] !== '0')  {
+      return 0;
+    } else if (Number(str[i]) >= 0 && Number(str[i]) <= 9) {
+      while (i < str.length && str[i] !== ' ' && Number(str[i]) >= 0 && Number(str[i]) <= 9) {
+        strNum += str[i];
+        if (Number(strNum) >= 2147483648) {
+          return 2147483648;
+        }
+        i++;
+      }
+      return Number(strNum);
+    } else {
+      strNum += str[i] === '-' ? '-' : '';
+      i++;
+      if (i >= str.length || (!Number(str[i]) && str[i] !== '0')) {
+        return 0;
+      } else {
+        while (i < str.length && str[i] !== ' ' && Number(str[i]) !== NaN) {
+          strNum += str[i];
+          if (Math.abs(Number(strNum)) >= 2147483648) {
+            if (strNum[0] === '-') {
+              return -2147483648;
+            } else {
+              return 2147483648; 
+            }
+          }
+          i++;
+        }
+        return Number(strNum);      
+      }
+    }
   } else {
-  	return 0;
+    return 0;
   } 
 };
