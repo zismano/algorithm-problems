@@ -43,7 +43,7 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
 /**
  * @param {string} str
  * @return {number}
- */
+*/
 var myAtoi = function(str) {
   let strNum = '';
   if (str.length) {
@@ -59,7 +59,7 @@ var myAtoi = function(str) {
       while (i < str.length && str[i] !== ' ' && Number(str[i]) >= 0 && Number(str[i]) <= 9) {
         strNum += str[i];
         if (Number(strNum) >= 2147483648) {
-          return 2147483648;
+          return 2147483647;
         }
         i++;
       }
@@ -70,13 +70,13 @@ var myAtoi = function(str) {
       if (i >= str.length || (!Number(str[i]) && str[i] !== '0')) {
         return 0;
       } else {
-        while (i < str.length && str[i] !== ' ' && Number(str[i]) !== NaN) {
+        while (i < str.length && str[i] !== ' ' && Number(str[i]) >= 0 && Number(str[i] <= 9)) {
           strNum += str[i];
           if (Math.abs(Number(strNum)) >= 2147483648) {
             if (strNum[0] === '-') {
               return -2147483648;
             } else {
-              return 2147483648; 
+              return 2147483647; 
             }
           }
           i++;
