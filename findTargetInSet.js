@@ -18,16 +18,12 @@ const findTargetInSet = function(target, set) { // O(2^m)
   let currWord = '';
   const rec = function(currWord, currIndex) {
     if (currIndex === target.length) {
-      if (set.has(currWord)) { // O(m)
-        return true;
-      }
-      return false;
+      return (set.has(currWord)); // O(m)
     }
     if (set.has(currWord)) { // O(m)
       return rec(currWord, currIndex + 1) || rec('', currIndex + 1); // O(2^m)
     }
-    currWord += target[currIndex];
-    return rec(currWord, currIndex + 1); 
+    return rec(currWord + target[currIndex], currIndex + 1); 
   }
   return rec(currWord, 0);  
 }
