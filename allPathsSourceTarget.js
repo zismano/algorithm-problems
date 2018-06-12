@@ -24,15 +24,15 @@ You can print different paths in any order, but you should keep the order of nod
  */
 var allPathsSourceTarget = function(graph) {
   let paths = [];
-  const findPath = (start, end, path) => {
-    if (path.length && path[path.length - 1] === end) {
+  const findPath = (start, path) => {
+    if (path[path.length - 1] === graph.length - 1) {
         paths.push(path);
     }
     let childNodes = graph[start];
     for (let i = 0; i < childNodes.length; i++) {
-        findPath(childNodes[i], end, path.concat(childNodes[i]));
+        findPath(childNodes[i], path.concat(childNodes[i]));
     }
   }
-  findPath(0, graph.length - 1, [0]);
+  findPath(0, [0]);
   return paths;
 };
