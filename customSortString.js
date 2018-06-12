@@ -31,7 +31,7 @@ S and T consist of lowercase letters only.
  */
 var customSortString = function(S, T) {
   let answer = '';
-  let hashCharacters = {};   // stores index in S and no. of occurences in T
+  let hashCharacters = {};   // stores no. of occurences of each ch in T
   for (let i = 0; i < T.length; i++) {
     let ch = T[i];
     if (S.indexOf(ch) === -1) {
